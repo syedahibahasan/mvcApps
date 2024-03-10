@@ -1,5 +1,8 @@
 package mvc;
 
-public class Command {
+public abstract class Command {
+
+    private Model model;
+    public void execute();
 
 }
