@@ -3,29 +3,17 @@ package mvc;
 /*
 Edits:
    Hiba 3/5/24: created file
-
+   
+   Christopher 3/10/24: implemented Model (MVC pattern; finished)
 */
 
-public class Model {
-
-	public String getFileName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void setFileName(String fName) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setUnsavedChanges(boolean b) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public boolean getUnsavedChanges() {
-		// TODO Auto-generated method stub
-		return false;
+public abstract class Model {
+	boolean unsavedChanges = false;
+	String fileName = null;
+	
+	// Sets the unsavedChanges flag to true and "fires a property change event."
+	void changed() {
+		unsavedChanges = true;
 	}
 
 }
