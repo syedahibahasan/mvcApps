@@ -1,5 +1,7 @@
 package mvc;
 
+import javax.swing.JPanel;
+
 /*
 Edits:
     Adarsh 3/10/24: implemented View (MVC Pattern: finished)
