@@ -1,5 +1,7 @@
 package mvc;
 
+import java.io.Serializable;
+
 /*
 Edits:
    Hiba 3/5/24: created file
@@ -18,5 +20,7 @@ public abstract class Model extends Publisher implements Serializable {
 	void changed() {
 		unsavedChanges = true;
 	}
+
+	protected abstract void addPropertyChangeListener(AppPanel appPanel);
 
 }
