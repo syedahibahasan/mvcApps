@@ -1,10 +1,11 @@
 package mvc;
-import java.util.List;
 
 /*
 Edits:
 
     Adarsh 3/10/24: implemented AppFactory (MVC Framework: finished)
+    
+    Adarsh 3/14/24: adjusted getHelp() and getEditCommands() methods to have return type String[]
 
  */
 
@@ -16,11 +17,11 @@ public interface AppFactory {
 
     public String getTitle();
 
-    public List<String> getHelp();
+    public String[] getHelp();
 
     public String about();
 
-    public List<String> getEditCommands();
+    public String[] getEditCommands();
 
     public Command makeEditCommand(String name);
 
