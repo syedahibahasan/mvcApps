@@ -10,7 +10,9 @@ Edits:
    
    Christopher 3/10/24: changed visibility of attributes and changed()
    
-   Christopher 3/13/24: added required methods used by Utilities; imported Serializable
+   Christopher 3/13/24: added required methods used by Utilities and imported Serializable,
+   	changed() now calls notifySubs() according to Publisher-Subscriber
+   	(no longer using PropertyChangeListener)
 */
 
 public abstract class Model extends Publisher implements Serializable {
@@ -20,6 +22,7 @@ public abstract class Model extends Publisher implements Serializable {
 	// sets the flag to true and "fires a property change event."
 	public void changed() {
 		unsavedChanges = true;
+		this.notifySubs();
 	}
 	
 	public boolean getUnsavedChanges() {

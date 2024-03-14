@@ -5,17 +5,21 @@ import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 /*
 Edits:
    Hiba 3/5/24: created file
    
    Hiba 3/5/24: : implemented AppPanel (MVC Pattern: finished)
+   
+   Christopher 3/13/24: Now implements Subscriber in addition to ActionListener. Neither
+   	uses PropertyChangeListener nor JavaBean anymore (due to revised specifications). Added
+   	update(), modified AppPanel constructor according to Pub-Sub, added to actionPerformed
+   	and error handling
+   	
 */
 
-public class AppPanel extends JPanel implements ActionListener, PropertyChangeListener {
+public class AppPanel extends JPanel implements Subscriber, ActionListener {
 
     private Model model;
     private View view;
@@ -24,7 +28,7 @@ public class AppPanel extends JPanel implements ActionListener, PropertyChangeLi
     public AppPanel(Model model, View view) {
         this.model = model;
         this.view = view;
-        model.addPropertyChangeListener(this);
+        model.subscribe(this);
 
         initializeUI();
     }
@@ -38,15 +42,18 @@ public class AppPanel extends JPanel implements ActionListener, PropertyChangeLi
 
  // Method from ActionListener interface
     @Override
-    public void actionPerformed(ActionEvent e) {
-        // Handle action events from the control panel or menus
+    public void actionPerformed(ActionEvent ae) {
+    	try {
+	     // handle control actions here
+	   	} catch (Exception e) {
+	   		handleException(e);
+	   	}
     }
-
-
-    // Method from PropertyChangeListener interface
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        // Handle property change events from the model
-    }
+    
+    protected void handleException(Exception e) {
+    	Utilities.error(e);
+	}
+    
+    public void update() {}
 }
 
