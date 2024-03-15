@@ -1,5 +1,7 @@
 package mvc;
+
 import java.io.Serializable;
+import CALab.Cell;
 /*
 Edits:
    Hiba 3/5/24: created file
@@ -13,6 +15,8 @@ Edits:
    Christopher 3/13/24: added required methods used by Utilities and imported Serializable,
    	changed() now calls notifySubs() according to Publisher-Subscriber
    	(no longer using PropertyChangeListener)
+   	
+   	Hiba 3/15/24: added makeCell method to instantiate Cell objects correctly and imported CALab.Cell
 */
 
 public abstract class Model extends Publisher implements Serializable {
@@ -38,4 +42,7 @@ public abstract class Model extends Publisher implements Serializable {
 	public String getFileName() {
 		return fileName;
 	}
+
+	//method for view.java
+	protected abstract Cell makeCell(int i, int j);
 }
