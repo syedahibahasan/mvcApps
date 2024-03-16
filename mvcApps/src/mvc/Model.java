@@ -1,7 +1,7 @@
 package mvc;
-
 import java.io.Serializable;
 import CALab.Cell;
+
 /*
 Edits:
    Hiba 3/5/24: created file
@@ -17,13 +17,15 @@ Edits:
    	(no longer using PropertyChangeListener)
    	
    	Hiba 3/15/24: added makeCell method to instantiate Cell objects correctly and imported CALab.Cell
+   	
+   	Christopher 3/16/24: (temporarily?) commented out makeCell() to resolve conflicts
 */
 
 public abstract class Model extends Publisher implements Serializable {
 	private boolean unsavedChanges = false;
 	private String fileName = null;
 	
-	// sets the flag to true and "fires a property change event."
+	// sets the flag to true and notifies subscribers
 	public void changed() {
 		unsavedChanges = true;
 		this.notifySubs();
@@ -44,5 +46,5 @@ public abstract class Model extends Publisher implements Serializable {
 	}
 
 	//method for view.java
-	protected abstract Cell makeCell(int i, int j);
+	//protected abstract Cell makeCell(int i, int j);
 }

@@ -18,10 +18,11 @@ Edits:
    	and error handling
    	
    Adarsh 3/14/24: implemented AppPanel class according to example given by professor
+   
+   Christopher 3/16/24: updated AppPanel constructor (controlPanel stuff)
 */
 
 public class AppPanel extends JPanel implements Subscriber, ActionListener {
-
     protected Model model;
     protected View view;
     protected AppFactory factory;
@@ -34,8 +35,13 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
     public AppPanel(AppFactory factory) {
     	this.factory = factory;
     	model = factory.makeModel();
-    	view = factory.makeView();
+    	view = new View(model);
+    	
     	// initialize controlPanel
+    	controlPanel = new JPanel();
+    	controlPanel.setLayout(new FlowLayout());
+    	add(controlPanel, BorderLayout.CENTER);
+    	
     	model.subscribe(this);
     	
     	frame = new SafeFrame();
@@ -46,13 +52,15 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         
 
-        initializeUI(); // might not be necessary
+        //initializeUI(); // might not be necessary
+        // indeed this is not necessary
     }
 
     // Method to set up the UI components
     private void initializeUI() {
         // Set layout and add components
         setLayout(new BorderLayout());
+        
         // ... add buttons, text fields, etc.
     }
     
@@ -74,7 +82,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
     
     protected JMenuBar createMenuBar() {
     	JMenuBar result = new JMenuBar();
-    	JMenu fileMenu = Utilities.makeMenu("File",  new String[] {"New", "Save", "SaveAs", "Open", "Quit"}, this);
+    	JMenu fileMenu = Utilities.makeMenu("File",  new String[] {"New", "Save", "Save as", "Open", "Quit"}, this);
     	result.add(fileMenu);
     	JMenu editMenu = Utilities.makeMenu("Edit", factory.getEditCommands(), this);
     	result.add(editMenu);
@@ -114,7 +122,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
                 Utilities.inform(factory.getHelp());
             } 
     		else { 
-                factory.makeEditCommand(cmmd);
+                //factory.makeEditCommand(cmmd);
             }
 	   	} catch (Exception e) {
 	   		handleException(e);
@@ -124,6 +132,5 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
     protected void handleException(Exception e) {
     	Utilities.error(e);
 	}
-    
 }
 

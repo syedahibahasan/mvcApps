@@ -1,8 +1,8 @@
 package mvc;
-
 import CALab.Cell; 
 import javax.swing.*;
 import java.awt.*;
+
 /*
 Edits:
 * 	Hiba 3/5/24: created file
@@ -17,18 +17,25 @@ Edits:
     model.makeCell(i, j) for creating Cell instances. Implemented cellClicked method to invoke Cell's state change and notification 
     logic. Updated the update method to refresh the View based on Cell state changes notified by the Model. Ensured View subscribes 
     to both Model and individual Cells for state changes. Added logic to setModel for subscribing to a new Model.
-
     
+    Christopher 3/16/24: added another constructor as View(Model), (temporarily?) commented out some conflicting
+    	procedures related to cells field
  */
+
 public class View extends JPanel implements Subscriber {
 
-    private Model model;
+    protected Model model;
     private Cell[][] cells; 
 
     public View(Model model, int rows, int cols) {
         this.model = model;
         model.subscribe(this); 
         initializeComponents(rows, cols);
+    }
+    
+    public View(Model model) {
+    	this.model = model;
+    	model.subscribe(this);
     }
 
     private void initializeComponents(int rows, int cols) {
@@ -38,7 +45,7 @@ public class View extends JPanel implements Subscriber {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 // Assumes makeCell() is a method that correctly instantiates Cell objects
-                cells[i][j] = model.makeCell(i, j); // You need to cast if makeCell() returns a type other than Cell
+                //cells[i][j] = model.makeCell(i, j); // You need to cast if makeCell() returns a type other than Cell
                 Cell cell = cells[i][j];
                 cell.subscribe(this); // Subscribe to individual cell changes
                 JButton button = new JButton();
@@ -52,11 +59,11 @@ public class View extends JPanel implements Subscriber {
     // Method to handle cell clicks
     private void cellClicked(Cell cell) {
         cell.nextState(); 
-        cell.notifySubs(); 
-
+        cell.notifySubs();
     }
-
+    
     // Subscriber update method
+    /*
     @Override
     public void update() {
         for (int i = 0; i < cells.length; i++) {
@@ -65,11 +72,14 @@ public class View extends JPanel implements Subscriber {
             }
         }
     }
-
+    */
+    public void update() {}
+    
     public void setModel(Model newModel) {
         if (this.model != null) {
             this.model.unsubscribe(this);
         }
+        
         this.model = newModel;
         if (this.model != null) {
             this.model.subscribe(this);
