@@ -29,8 +29,14 @@ public abstract class Grid extends Model {
     public Grid() { this(20); }
 
     protected void populate() {
-        // 1. use makeCell to fill in cells
+    	// 1. use makeCell to fill in cells
         // 2. use getNeighbors to set the neighbors field of each cell
+    	for (int i = 0; i < cells.length; i++) {
+    		for (int j = 0; j < cells[i].length; j++) {
+    			cells[i][j] = makeCell(true);
+    			cells[i][j].neighbors = getNeighbors(cells[i][j], 1);
+    		}
+    	} 
     }
 
     // called when Populate and clear buttons are clicked
