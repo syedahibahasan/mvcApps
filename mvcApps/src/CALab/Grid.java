@@ -43,21 +43,13 @@ public abstract class Grid extends Model {
 
     // called when Populate and clear buttons are clicked
     public void repopulate(boolean randomly) {
-        if (randomly) {
-          // randomly set the status of each cell
-        	for (int i = 0; i < cells.length; i++) {
-        		for (int j = 0; j < cells[i].length; j++) {
-        			cells[i][j].reset(randomly);
-        		}
-        	}
-        } else {
-		  // set the status of each cell to 0 (dead)
-        	for (int i = 0; i < cells.length; i++) {
-        		for (int j = 0; j < cells[i].length; j++) {
-        			cells[i][j].reset(randomly); // unsure if I did this correctly -Adarsh
-        		}
+    	// randomly set the status of each cell
+    	for (int i = 0; i < cells.length; i++) {
+        	for (int j = 0; j < cells[i].length; j++) {
+        		cells[i][j].reset(randomly);
         	}
         }
+        
         // notify subscribers
         notifySubs();
     }
