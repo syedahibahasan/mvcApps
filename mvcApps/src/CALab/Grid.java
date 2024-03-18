@@ -8,6 +8,8 @@ import mvc.*;
 /*
 Edits:
    Hiba 3/15/24: created file
+   
+   Adarsh 3/18/24: implemented populate(), repopulate(), interact(), update()
 */
 
 public abstract class Grid extends Model {
