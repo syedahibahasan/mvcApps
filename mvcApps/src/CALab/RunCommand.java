@@ -2,6 +2,13 @@ package CALab;
 import mvc.Command;
 import mvc.Model;
 
+/*
+Edits: 
+
+3/18/24, Adarsh: created file
+
+ */
+
 public class RunCommand extends Command{
 	
 	private int cycles; // determines if we use run1 or run50
