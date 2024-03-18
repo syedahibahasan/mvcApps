@@ -36,17 +36,28 @@ public abstract class Grid extends Model {
     			cells[i][j] = makeCell(true);
     			cells[i][j].neighbors = getNeighbors(cells[i][j], 1);
     		}
-    	} 
+    	}
     }
 
     // called when Populate and clear buttons are clicked
     public void repopulate(boolean randomly) {
         if (randomly) {
           // randomly set the status of each cell
+        	for (int i = 0; i < cells.length; i++) {
+        		for (int j = 0; j < cells[i].length; j++) {
+        			cells[i][j].reset(randomly);
+        		}
+        	}
         } else {
 		  // set the status of each cell to 0 (dead)
+        	for (int i = 0; i < cells.length; i++) {
+        		for (int j = 0; j < cells[i].length; j++) {
+        			cells[i][j].reset(randomly); // unsure if I did this correctly -Adarsh
+        		}
+        	}
         }
         // notify subscribers
+        notifySubs();
     }
 
 
@@ -78,11 +89,21 @@ public abstract class Grid extends Model {
     }
 
     public void interact() {
-        // ???
+        for (int i = 0; i < cells.length; i++) {
+        	for (int j = 0; j < cells[i].length; j++) {
+        		cells[i][j].interact();
+        		update();
+        	}
+        }
     }
 
     public void update() {
-        // ???
+        for (int i = 0; i < cells.length; i++) {
+        	for (int j = 0; j < cells[i].length; j++) {
+        		cells[i][j].update();
+        		update(); // is this necessary? not sure -Adarsh
+        	}
+        }
     }
 
     public void updateLoop(int cycles) {
