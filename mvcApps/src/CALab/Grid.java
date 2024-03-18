@@ -51,6 +51,11 @@ public abstract class Grid extends Model {
         Tricky part: cells in row/col 0 or dim - 1.
         The asker is not a neighbor of itself.
         */
+    	if (radius == 1) return asker.neighbors;
+    	Set<Cell> neighbors = new HashSet<Cell>();
+    	// insert logic to add cells to neighbors
+    	return neighbors;
+    	
     }
 
 
@@ -58,6 +63,12 @@ public abstract class Grid extends Model {
 
     public void observe() {
         // call each cell's observe method and notify subscribers
+    	for (int i = 0; i < cells.length; i++) {
+    		for (int j = 0; j < cells[i].length; j++) {
+    			cells[i][j].observe();
+    			update();
+    		}
+    	}
     }
 
     public void interact() {

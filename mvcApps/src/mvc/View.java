@@ -20,59 +20,24 @@ Edits:
     
     Christopher 3/16/24: added another constructor as View(Model), (temporarily?) commented out some conflicting
     	procedures related to cells field
+    	
+    Adarsh 3/17/24: Removed CellView-specific components in this class, making it a general frame work that will be extended by 
+    	GridView and CellView
+    	
  */
 
 public class View extends JPanel implements Subscriber {
 
     protected Model model;
-    private Cell[][] cells; 
 
-    public View(Model model, int rows, int cols) {
-        this.model = model;
-        model.subscribe(this); 
-        initializeComponents(rows, cols);
-    }
     
     public View(Model model) {
     	this.model = model;
     	model.subscribe(this);
     }
 
-    private void initializeComponents(int rows, int cols) {
-        setLayout(new GridLayout(rows, cols)); // GridLayout for the cells
-        cells = new Cell[rows][cols];
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                // Assumes makeCell() is a method that correctly instantiates Cell objects
-                //cells[i][j] = model.makeCell(i, j); // You need to cast if makeCell() returns a type other than Cell
-                Cell cell = cells[i][j];
-                cell.subscribe(this); // Subscribe to individual cell changes
-                JButton button = new JButton();
-                button.addActionListener(e -> cellClicked(cell));
-                add(button);
-                // Keep a reference to the button in Cell if necessary or maintain a mapping if needed.
-            }
-        }
-    }
-
-    // Method to handle cell clicks
-    private void cellClicked(Cell cell) {
-        cell.nextState(); 
-        cell.notifySubs();
-    }
-    
     // Subscriber update method
-    /*
-    @Override
-    public void update() {
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                cells[i][j].update(); 
-            }
-        }
-    }
-    */
+    
     public void update() {}
     
     public void setModel(Model newModel) {

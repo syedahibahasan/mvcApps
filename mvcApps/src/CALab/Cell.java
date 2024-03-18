@@ -26,9 +26,34 @@ public abstract class Cell extends Publisher implements Serializable {
 			Starting at a random position in the array search for a neighbor without a partner
 			Make the first such neighbor (if any) the partner and set its partner field to this
 			*/
+        	partner = null;
+        	Cell[] neighborArray = (Cell[]) neighbors.toArray();
+        	int start = (int)(Math.random() * neighborArray.length);
+        	int index = start; // start at "start"
+        	Cell curr;
+        	while (index < neighborArray.length) {
+        		curr = neighborArray[index];
+        		if (curr.partner == null) {
+        			curr.partner = this;
+        			this.partner = curr;
+        			return;
+        		}
+        		index++;
+        	}
+        	index = 0;
+        	while (index < start) {
+        		curr = neighborArray[index];
+        		if (curr.partner == null) {
+        			curr.partner = this;
+        			this.partner = curr;
+        			return;
+        		}
+        		index++;
+        	}
 		}
 
     }
+    
 
     public void unpartner() {
         if (partner != null) {
