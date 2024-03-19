@@ -30,6 +30,7 @@ public class CellView extends JButton implements ActionListener, Subscriber {
         setBorder(BorderFactory.createLineBorder(Color.black));
         setText("" + myCell.getStatus());
         // call update needed?
+        this.update();
     }
 
     // called by notifySubscribers and GridView.update

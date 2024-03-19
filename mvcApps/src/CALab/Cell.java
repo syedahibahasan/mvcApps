@@ -73,7 +73,7 @@ public abstract class Cell extends Publisher implements Serializable {
     // set status to a random or initial value
     public abstract void reset(boolean randomly);
     //get status
-	protected abstract Integer getStatus();
+	protected abstract int getStatus();
     // set status to status + 1 mod whatever
     public abstract void nextState();
   

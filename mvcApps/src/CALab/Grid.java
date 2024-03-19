@@ -20,7 +20,7 @@ public abstract class Grid extends Model {
     public int getDim() { return dim; }
     public int getTime() { return time; }
     public Cell getCell(int row, int col) { return cells[row][col]; }
-    public abstract Cell makeCell(boolean uniform);
+    public abstract Cell makeCell();
 
 
     public Grid(int dim) {
@@ -35,7 +35,7 @@ public abstract class Grid extends Model {
         // 2. use getNeighbors to set the neighbors field of each cell
     	for (int i = 0; i < cells.length; i++) {
     		for (int j = 0; j < cells[i].length; j++) {
-    			cells[i][j] = makeCell(true);
+    			cells[i][j] = makeCell();
     			cells[i][j].neighbors = getNeighbors(cells[i][j], 1);
     		}
     	}
@@ -65,6 +65,7 @@ public abstract class Grid extends Model {
     	if (radius == 1) return asker.neighbors;
     	Set<Cell> neighbors = new HashSet<Cell>();
     	// insert logic to add cells to neighbors
+    	
     	return neighbors;
     	
     }
@@ -101,7 +102,7 @@ public abstract class Grid extends Model {
 
     public void updateLoop(int cycles) {
         observe();
-        for(int cycle = 0; cycle < cycles; cycle++) {
+        for (int cycle = 0; cycle < cycles; cycle++) {
             interact();
             update();
             observe();
