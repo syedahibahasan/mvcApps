@@ -7,6 +7,9 @@ import mvc.*;
 /*
 Edits:
    Hiba 3/15/24: created file, added getStatus & getColor Methods 
+   
+   Christopher 3/20/24: getColor() changed to an abstract method due to 
+   	specifications change
 */
 
 public abstract class Cell extends Publisher implements Serializable {
@@ -74,15 +77,9 @@ public abstract class Cell extends Publisher implements Serializable {
     public abstract void reset(boolean randomly);
     //get status
 	protected abstract int getStatus();
-    // set status to status + 1 mod whatever
+    // set status to status + 1 mod (total number of states)
     public abstract void nextState();
-  
-
+    // this is now required to be abstract
+	public abstract Color getColor();
 	
-	protected Color getColor() {
-		//Implement logic to return a color based on the cell's state
-		return this.getStatus() == 1 ? Color.GREEN : Color.RED;
-	}
-
-
 }
