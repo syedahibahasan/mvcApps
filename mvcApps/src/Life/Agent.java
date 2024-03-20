@@ -1,5 +1,7 @@
 package Life;
 import CALab.Cell;
+
+import java.awt.Color;
 import java.lang.Math;
 import java.util.*;
 /*
@@ -9,6 +11,7 @@ import java.util.*;
  * 
  * Christopher Vu 3/20/24: implemented nextState() and reset, also added constructors
  * 
+ * Christopher Vu 3/20/24: getColor() is customized to Agent
  */
 
 public class Agent extends Cell {
@@ -70,5 +73,10 @@ public class Agent extends Cell {
 		} else {
 			this.status = 0;
 		}
+	}
+	
+	public Color getColor() {
+		//Implement logic to return a color based on the cell's state
+		return this.getStatus() == 1 ? Color.GREEN : Color.RED;
 	}
 }
