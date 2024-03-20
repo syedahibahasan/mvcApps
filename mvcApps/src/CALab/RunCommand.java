@@ -11,11 +11,11 @@ Edits:
 
 public class RunCommand extends Command{
 	
-	private int cycles; // determines if we use run1 or run50
+	private int numRuns; // determines if we use run1 or run50
 	
-	public RunCommand(Model model, int cycles) {
+	public RunCommand(Model model, int numRuns) {
 		super(model);
-		this.cycles = cycles;
+		this.numRuns = numRuns;
 	}
 	
 	public void execute() throws Exception {
