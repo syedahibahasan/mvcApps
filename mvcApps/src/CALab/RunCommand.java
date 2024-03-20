@@ -9,6 +9,8 @@ Adarsh 3/18/24: created file
 
 Adarsh 3/19/24: fixed constructor
 
+Adarsh 3/19/24: finished execute() method
+
  */
 
 public class RunCommand extends Command{
@@ -25,7 +27,7 @@ public class RunCommand extends Command{
 			throw new Exception("Model must instantiate Grid");
 		}
 		Grid grid = (Grid) model;
-		// call method here
+		grid.updateLoop(numRuns);
 	}
 	
 }
