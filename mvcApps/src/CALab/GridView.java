@@ -20,6 +20,7 @@ public class GridView extends View {
     public GridView(Model model) {
         super(model);
         this.model = (Grid) model; 
+        JPanel jp = new JPanel();
         setLayout(new GridLayout(this.model.getDim(), this.model.getDim())); 
 
         // Initialize cellViews with the dimensions of the grid
@@ -33,7 +34,11 @@ public class GridView extends View {
                 add(cellViews[i][j]); // Add CellView to the GridView
             }
         }
+        
+        add(jp);
+       
     }
+    
 
     public void update() {
         // call update method of each CellView

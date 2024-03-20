@@ -13,8 +13,8 @@ Edits:
 */
 
 public abstract class Grid extends Model {
-    static private int time = 0;
-    protected int dim = 20;
+    public static int time = 0;
+    public static int dim = 20;
     protected Cell[][] cells;
 
     public int getDim() { return dim; }
@@ -36,6 +36,10 @@ public abstract class Grid extends Model {
     	for (int i = 0; i < cells.length; i++) {
     		for (int j = 0; j < cells[i].length; j++) {
     			cells[i][j] = makeCell();
+    		}
+    	}
+    	for (int i = 0; i < cells.length; i++) {
+    		for (int j = 0; j < cells[i].length; j++) {
     			cells[i][j].neighbors = getNeighbors(cells[i][j], 1);
     		}
     	}
@@ -62,9 +66,17 @@ public abstract class Grid extends Model {
         Tricky part: cells in row/col 0 or dim - 1.
         The asker is not a neighbor of itself.
         */
-    	if (radius == 1) return asker.neighbors;
     	Set<Cell> neighbors = new HashSet<Cell>();
-    	// insert logic to add cells to neighbors
+    	int centerRow = asker.row;
+    	int centerCol = asker.col;
+    	for (int dist = 1; dist <= radius; dist++) {
+    		for (int row = centerRow - dist; row <= centerRow + dist; row++) {
+    			for (int col = centerCol - dist; col <= centerCol + dist; col++) {
+    				if (row == centerRow && col == centerCol) continue;
+    				//INCOMPLETE
+    			}
+    		}
+    	}
     	
     	return neighbors;
     	

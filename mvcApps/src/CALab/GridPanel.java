@@ -33,9 +33,4 @@ public class GridPanel extends AppPanel{
 		
 	}
 	
-	public static void main(String[] args) {
-		AppFactory factory = new LifeFactory();
-		AppPanel panel = new GridPanel(factory);
-		panel.display();
-	}
 }
