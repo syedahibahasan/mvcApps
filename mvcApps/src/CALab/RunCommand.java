@@ -5,7 +5,9 @@ import mvc.Model;
 /*
 Edits: 
 
-3/18/24, Adarsh: created file
+Adarsh 3/18/24: created file
+
+Adarsh 3/19/24: fixed constructor
 
  */
 

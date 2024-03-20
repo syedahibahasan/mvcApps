@@ -6,6 +6,8 @@ import mvc.*;
  
  Adarsh 3/18/24: created class
  
+ Adarsh 3/19/24: implemented AppFactory methods
+ 
  */
 public abstract class GridFactory implements AppFactory {
 
