@@ -5,6 +5,8 @@ import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import CALab.*;
+import Life.*;
 
 /*
 Edits:
@@ -122,7 +124,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
                 Utilities.inform(factory.getHelp());
             } 
     		else { 
-                factory.makeEditCommand(cmmd);
+                factory.makeEditCommand(model, cmmd, null);
             }
 	   	} catch (Exception e) {
 	   		handleException(e);
@@ -132,11 +134,5 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
     protected void handleException(Exception e) {
     	Utilities.error(e);
 	}
-    
-    public static void main(String[] args) {
-    	// AppPanel app = new AppPanel();
-    	// not sure how to do this, since AppFactory is an interface and AppFactory requires an AppFactory 
-    	// instance to create itself
-    }
 }
 

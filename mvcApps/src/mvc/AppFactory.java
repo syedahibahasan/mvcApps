@@ -12,7 +12,7 @@ public interface AppFactory {
 
     public Model makeModel();
 
-    public View makeView();
+    public View makeView(Model m);
 
     public String getTitle();
 
@@ -22,5 +22,5 @@ public interface AppFactory {
 
     public String[] getEditCommands();
 
-    public Command makeEditCommand(String name);
+    public Command makeEditCommand(Model m, String name, Object source);
 }
