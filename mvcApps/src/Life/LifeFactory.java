@@ -6,7 +6,8 @@ public class LifeFactory extends GridFactory {
 	
 	
 	public Model makeModel() {
-		
+	
+		return new Society();
 		
 	}
 	
