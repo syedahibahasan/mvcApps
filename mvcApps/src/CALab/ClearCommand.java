@@ -23,6 +23,6 @@ public class ClearCommand extends Command {
 			throw new Exception("Model must instantiate Grid");
 		}
 		Grid grid = (Grid) model;
-		grid.repopulate(true); // not sure about whether boolean should be t or f here
+		grid.repopulate(false); // not sure about whether boolean should be t or f here
 	}
 }
