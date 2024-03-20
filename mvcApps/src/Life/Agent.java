@@ -6,6 +6,9 @@ import java.util.*;
  * Christopher Vu 3/17/24: Created Life package, added Agent.java
  * 
  * Christopher Vu 3/18/24: implemented update(), observe(), and interact()
+ * 
+ * Christopher Vu 3/20/24: implemented nextState() and reset, also added constructors
+ * 
  */
 
 public class Agent extends Cell {
@@ -14,11 +17,19 @@ public class Agent extends Cell {
 	// observe() updates ambience to this Agent's total number of neighbors that are alive
 	private int ambience = 8;
 	
+	public Agent() {
+		
+	}
+	public Agent(int status, int ambience) {
+		this.status = status;
+		this.ambience = ambience;
+	}
+	
 	public void update() {
-		if (Society.rebirth.contains(this.ambience)) {
-			this.status = 1; 
-		} else if (Society.death.contains(this.ambience)) {
-			this.status = 0;
+		if (Society.rebirth.contains(ambience)) {
+			status = 1; 
+		} else if (Society.death.contains(ambience)) {
+			status = 0;
 		}
 	}
 	
@@ -41,9 +52,23 @@ public class Agent extends Cell {
 	public void interact() {}
 	
 	public void reset(boolean randomly) {
-		
+		if (randomly) {
+			double rand = Math.random();
+			if (rand > 0.499) {
+				status = 1;
+			} else {
+				status = 0;
+			}
+		} else {
+			status = 0;
+		}
 	}
 	
-	public void nextState() {}
-
+	public void nextState() {
+		if (this.status == 0) {
+			this.status = 1;
+		} else {
+			this.status = 0;
+		}
+	}
 }

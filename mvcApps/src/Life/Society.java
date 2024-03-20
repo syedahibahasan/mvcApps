@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 /*
  * Christopher Vu 3/18/24: Started Society.java, added static initialization of rebirth and death (from lecture notes)
+ * 
  */
 
 public class Society extends Grid {
@@ -16,11 +17,11 @@ public class Society extends Grid {
 		return new Agent();
 	}
 	
-	// initially assigning the ambiances to rebirth or death
+	// initially assigning the ambiences to rebirth or death
 	static {
 	     death.add(0);
 	     death.add(1);
-	     // no change of state for ambiance 2
+	     // no change of state for ambience 2
 	     rebirth.add(3);
 	     death.add(4);
 	     death.add(5);
@@ -28,5 +29,4 @@ public class Society extends Grid {
 	     death.add(7);
 	     death.add(8);
 	}
-
 }
