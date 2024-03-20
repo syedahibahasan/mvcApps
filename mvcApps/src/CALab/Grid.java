@@ -10,6 +10,8 @@ Edits:
    Hiba 3/15/24: created file
    
    Adarsh 3/18/24: implemented populate(), repopulate(), interact(), update()
+   
+   Hiba 3/20/24: implemented getNeighbors()
 */
 
 public abstract class Grid extends Model {
@@ -66,21 +68,24 @@ public abstract class Grid extends Model {
         Tricky part: cells in row/col 0 or dim - 1.
         The asker is not a neighbor of itself.
         */
-    	Set<Cell> neighbors = new HashSet<Cell>();
-    	int centerRow = asker.row;
-    	int centerCol = asker.col;
-    	for (int dist = 1; dist <= radius; dist++) {
-    		for (int row = centerRow - dist; row <= centerRow + dist; row++) {
-    			for (int col = centerCol - dist; col <= centerCol + dist; col++) {
-    				if (row == centerRow && col == centerCol) continue;
-    				//INCOMPLETE
-    			}
-    		}
+    	 Set<Cell> neighbors = new HashSet<>();
+    	    int centerRow = asker.row;
+    	    int centerCol = asker.col;
+
+    	    for (int dist = 1; dist <= radius; dist++) {
+    	        for (int row = centerRow - dist; row <= centerRow + dist; row++) {
+    	            for (int col = centerCol - dist; col <= centerCol + dist; col++) {
+    	                // Only add cells at the current distance (forming a square "ring")
+    	                if (Math.abs(row - centerRow) == dist || Math.abs(col - centerCol) == dist) {
+    	                    if (row >= 0 && row < dim && col >= 0 && col < dim) { // Check grid boundaries
+    	                        neighbors.add(cells[row][col]);
+    	                    }
+    	                }
+    	            }
+    	        }
+    	    }
+    	    return neighbors;
     	}
-    	
-    	return neighbors;
-    	
-    }
 
 
    // cell phases:
