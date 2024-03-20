@@ -9,36 +9,46 @@ Edits:
    Hiba 3/15/24: created file
    
    Adarsh 3/18/24: adjusted actionPerformed() implementation to reflect lecture sample
+   
+   Hiba 3/15/24: Implemented updateVisuals method to refresh the button's appearance according to the cell's status, color, and border.
+                 Enhanced actionPerformed to change cell state upon action and immediately update the button's visuals.
 */
-
-
 public class CellView extends JButton implements ActionListener, Subscriber {
     private Cell myCell;
 
     public CellView(Cell c) {
+    	super();
         myCell = c;
-        if (c != null) { c.subscribe(this); }
+        if (c != null) { 
+        	c.subscribe(this); 
+        	updateVisuals();
+        	}
         this.addActionListener(this);
     }
 
-    public CellView() { this(null); }
+    private void updateVisuals() {
+    	if (myCell != null) {
+            setBackground(myCell.getColor()); 
+            setBorder(BorderFactory.createLineBorder(Color.black)); // Set or reaffirm the border color.
+            setText("" + myCell.getStatus()); 
+        }	
+	}
+
+	public CellView() { 
+    	this(null); 
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        myCell.nextState();
-        setBackground(myCell.getColor());
-        setBorder(BorderFactory.createLineBorder(Color.black));
-        setText("" + myCell.getStatus());
-        // call update needed?
-        this.update();
-    }
+    	 if (myCell != null) {
+             myCell.nextState();
+             updateVisuals(); 
+         }
+     }
 
     // called by notifySubscribers and GridView.update
-
     @Override
     public void update() {
-        setBackground(myCell.getColor());
-        setBorder(BorderFactory.createLineBorder(Color.black)); // needed?
-        setText("" + myCell.getStatus());
+       updateVisuals();
     }
 }
