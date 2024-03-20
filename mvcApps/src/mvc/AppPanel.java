@@ -52,18 +52,6 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
     	frame.setJMenuBar(createMenuBar());
         frame.setTitle(factory.getTitle());
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        
-
-        //initializeUI(); // might not be necessary
-        // indeed this is not necessary
-    }
-
-    // Method to set up the UI components
-    private void initializeUI() {
-        // Set layout and add components
-        setLayout(new BorderLayout());
-        
-        // ... add buttons, text fields, etc.
     }
     
     public void display() {
