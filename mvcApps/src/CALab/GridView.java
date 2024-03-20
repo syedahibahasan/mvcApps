@@ -20,23 +20,19 @@ public class GridView extends View {
     public GridView(Model model) {
         super(model);
         this.model = (Grid) model; 
-        JPanel jp = new JPanel();
-        setLayout(new GridLayout(this.model.getDim(), this.model.getDim())); 
+        setLayout(new GridLayout(Grid.dim, Grid.dim)); 
 
         // Initialize cellViews with the dimensions of the grid
-        cellViews = new CellView[this.model.getDim()][this.model.getDim()];
+        cellViews = new CellView[Grid.dim][Grid.dim];
         
         // Populate cellViews with CellView objects
-        for (int i = 0; i < this.model.getDim(); i++) {
-            for (int j = 0; j < this.model.getDim(); j++) {
+        for (int i = 0; i < Grid.dim; i++) {
+            for (int j = 0; j < Grid.dim; j++) {
                 Cell cell = this.model.getCell(i, j);
                 cellViews[i][j] = new CellView(cell);
                 add(cellViews[i][j]); // Add CellView to the GridView
             }
-        }
-        
-        add(jp);
-       
+        } 
     }
     
 
