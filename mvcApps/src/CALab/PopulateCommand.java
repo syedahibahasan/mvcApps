@@ -22,6 +22,6 @@ public class PopulateCommand extends Command {
 			throw new Exception("Model must instantiate Grid");
 		}
 		Grid grid = (Grid) model;
-		grid.populate();
+		grid.repopulate(true);
 	}
 }

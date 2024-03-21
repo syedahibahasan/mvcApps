@@ -20,6 +20,7 @@ public class GridView extends View {
     public GridView(Model model) {
         super(model);
         this.model = (Grid) model; 
+        model.subscribe(this);
         setLayout(new GridLayout(Grid.dim, Grid.dim)); 
 
         // Initialize cellViews with the dimensions of the grid

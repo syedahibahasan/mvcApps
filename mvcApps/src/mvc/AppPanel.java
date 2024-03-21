@@ -113,7 +113,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
                 Utilities.inform(factory.getHelp());
             } 
     		else { 
-                factory.makeEditCommand(model, cmmd, null);
+                factory.makeEditCommand(model, cmmd, null).execute();
             }
 	   	} catch (Exception e) {
 	   		handleException(e);

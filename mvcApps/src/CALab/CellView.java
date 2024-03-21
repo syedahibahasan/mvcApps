@@ -31,7 +31,7 @@ public class CellView extends JButton implements ActionListener, Subscriber {
     		setOpaque(true);
             setBackground(myCell.getColor()); 
             setBorder(BorderFactory.createLineBorder(Color.black)); // Set or reaffirm the border color.
-            setText("" + myCell.getStatus()); 
+            setText("" + myCell.getAmbience()); 
         }	
 	}
 

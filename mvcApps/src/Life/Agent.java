@@ -1,5 +1,6 @@
 package Life;
 import CALab.Cell;
+import mvc.Utilities;
 
 import java.awt.Color;
 import java.lang.Math;
@@ -18,11 +19,10 @@ public class Agent extends Cell {
 	// status == 0 is dead, == 1 is alive
 	private int status = 0;
 	// observe() updates ambience to this Agent's total number of neighbors that are alive
-	private int ambience = 8;
+	private int ambience = 0;
 	
-	public Agent() {
-		
-	}
+	public Agent() {}
+	
 	public Agent(int status, int ambience) {
 		this.status = status;
 		this.ambience = ambience;
@@ -34,17 +34,22 @@ public class Agent extends Cell {
 		} else if (Society.death.contains(ambience)) {
 			status = 0;
 		}
+		notifySubs();
 	}
 	
 	public void observe() {
 		int result = 0;
-		Iterator<Cell> neighbor = this.neighbors.iterator();
-		while(neighbor.hasNext()) {
-			if (( (Agent) neighbor).getStatus() == 1) {
+		for (Cell c : this.neighbors) {
+			if ((c != null && ((Agent)c).status == 1)) {
 				result++;
 			}
 		}
 		ambience = result;
+	}
+	
+	protected int getAmbience() {
+		observe();
+		return ambience;
 	}
 	
 	protected int getStatus() {
@@ -56,8 +61,8 @@ public class Agent extends Cell {
 	
 	public void reset(boolean randomly) {
 		if (randomly) {
-			double rand = Math.random();
-			if (rand > 0.499) {
+			int rand = Utilities.rng.nextInt(100);
+			if (rand < Society.percentAlive) {
 				status = 1;
 			} else {
 				status = 0;
@@ -77,6 +82,6 @@ public class Agent extends Cell {
 	
 	public Color getColor() {
 		//Implement logic to return a color based on the cell's state
-		return this.getStatus() == 1 ? Color.GREEN : Color.RED;
+		return this.status == 1 ? Color.GREEN : Color.RED;
 	}
 }
