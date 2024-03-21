@@ -71,23 +71,19 @@ public abstract class Grid extends Model {
     	
     	
     	Set<Cell> neighbors = new HashSet<>();
-    	int centerRow = asker.row;
-    	int centerCol = asker.col;
-
-    	for (int dist = 1; dist <= radius; dist++) {
-    		for (int row = centerRow - dist; row <= centerRow + dist; row++) {
-    			for (int col = centerCol - dist; col <= centerCol + dist; col++) {
-    				//Only add cells at the current distance (forming a square "ring")
-    				if (Math.abs(row - centerRow) == dist || Math.abs(col - centerCol) == dist) {
-    					if (row >= 0 && row < dim && col >= 0 && col < dim) { // Check grid boundaries
-    						neighbors.add(cells[row][col]);
-    					}
-    				}
-    			}
+    	
+    	int askerRow = asker.row;
+    	int askerCol = asker.col;
+    	
+    	for (int row = -radius; row <= radius; row++) {
+    		for (int col = -radius; col <= radius; col++) {
+    			if (row == 0 && col == 0) continue;
+    			int neighborRow = (askerRow + row + dim) % dim;
+    			int neighborCol = (askerCol + col + dim) % dim;
+    			neighbors.add(cells[neighborRow][neighborCol]);
     		}
     	}
     	return neighbors;
-    	
     }
 
 
