@@ -20,6 +20,9 @@ public abstract class Cell extends Publisher implements Serializable {
     protected Cell partner = null;
 
 
+    public Cell(Grid myGrid) {
+    	this.myGrid = myGrid;
+    }
     // choose a random neighbor as a partner
     public void choosePartner() {
         if (partner == null && neighbors != null) {

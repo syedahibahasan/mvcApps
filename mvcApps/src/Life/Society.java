@@ -1,5 +1,5 @@
 package Life;
-import CALab.Grid;
+import CALab.*;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -13,8 +13,8 @@ public class Society extends Grid {
 	public static Set<Integer> rebirth = new HashSet<Integer>();
 	public static Set<Integer> death = new HashSet<Integer>();
 	
-	public Agent makeCell() {
-		return new Agent();
+	public Cell makeCell(boolean uniform) {
+		return new Agent(this);
 	}
 	
 	// initially assigning the ambiences to rebirth or death

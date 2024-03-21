@@ -22,7 +22,7 @@ public abstract class Grid extends Model {
     public int getDim() { return dim; }
     public int getTime() { return time; }
     public Cell getCell(int row, int col) { return cells[row][col]; }
-    public abstract Cell makeCell();
+    public abstract Cell makeCell(boolean uniform);
 
 
     public Grid(int dim) {
@@ -35,9 +35,12 @@ public abstract class Grid extends Model {
     protected void populate() {
     	// 1. use makeCell to fill in cells
         // 2. use getNeighbors to set the neighbors field of each cell
+    	boolean uniform = true;
     	for (int i = 0; i < cells.length; i++) {
     		for (int j = 0; j < cells[i].length; j++) {
-    			cells[i][j] = makeCell();
+    			cells[i][j] = makeCell(uniform);
+    			cells[i][j].row = i;
+    			cells[i][j].col = j;
     		}
     	}
     	for (int i = 0; i < cells.length; i++) {

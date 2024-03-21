@@ -21,12 +21,10 @@ public class Agent extends Cell {
 	// observe() updates ambience to this Agent's total number of neighbors that are alive
 	private int ambience = 0;
 	
-	public Agent() {}
-	
-	public Agent(int status, int ambience) {
-		this.status = status;
-		this.ambience = ambience;
+	public Agent(Society society) {
+		super(society);
 	}
+	
 	
 	public void update() {
 		if (Society.rebirth.contains(ambience)) {
